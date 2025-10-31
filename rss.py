@@ -44,11 +44,11 @@ async def check_account(bot, username):
         print(f"Found {len(new)} new tweets")
 
         for post in new:
-            msg = f"New tweet from @{username}
+            msg = f"""New tweet from @{username}
 
 {post['text']}
 
-{post['link']}"
+{post['link']}"""
             try:
                 await bot.send_message(chat_id=CHAT_ID, text=msg[:4096])
                 sent_links.add(post['link'])
