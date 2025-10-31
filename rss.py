@@ -11,15 +11,15 @@ from urllib.parse import urljoin
 # IMPORTANT: Fill these variables before running!
 
 # 1. Telegram Config
-BOT_TOKEN = 'YOUR_BOT_TOKEN'
-CHAT_ID = 'YOUR_CHAT_ID'
+BOT_TOKEN = '7801655479:AAHXYk2f0Hn8jKlUSQnWbpeNNv8fwCLWTDI'
+CHAT_ID = '-1003270118980'
 
 # 2. Nitter Config
 NITTER_INSTANCE_URL = 'https://nitter.net'
 
 # 3. <<-- ADD ALL YOUR ACCOUNTS HERE -->>
 TARGET_USERNAMES = [
-    'NASA',
+    'tv9kannada',
     'IamHCB',
     'SpaceX' 
 ]
