@@ -15,7 +15,7 @@ BOT_TOKEN = '7801655479:AAHXYk2f0Hn8jKlUSQnWbpeNNv8fwCLWTDI'
 CHAT_ID = '-1003270118980'
 
 # 2. Nitter Config
-NITTER_INSTANCE_URL = 'https://nitter.net'
+NITTER_INSTANCE_URL = 'https://nitter.privacyredirect.com/'
 
 # 3. <<-- ADD ALL YOUR ACCOUNTS HERE -->>
 TARGET_USERNAMES = [
@@ -26,7 +26,7 @@ TARGET_USERNAMES = [
 
 # --- ADVANCED CONFIGURATION ---
 SLEEP_INTERVAL = 900  # 15 minutes
-SLEEP_BETWEEN_ACCOUNTS = 10 # 10 seconds
+SLEEP_BETWEEN_ACCOUNTS = 30 # 10 seconds
 
 # --- SCRIPT ---
 
