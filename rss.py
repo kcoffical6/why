@@ -13,7 +13,7 @@ scraper = Nitter(log_level=1, skip_instance_check=False)
 
 async def check_account(bot, username):
     sent_file = f"sent_posts_{username}.txt"
-    
+
     try:
         with open(sent_file, 'r') as f:
             sent_links = set(line.strip() for line in f)
@@ -21,29 +21,28 @@ async def check_account(bot, username):
         print(f"
 --- First run: {username} ---")
         sent_links = set()
-    
+
     print(f"
 --- Checking: {username} ---")
-    
+
     try:
         tweets = scraper.get_tweets(username, mode='user', number=20)
-        
         if not tweets or 'tweets' not in tweets:
-            print(f"No tweets found")
+            print("No tweets found")
             return
-        
+
         new = []
         for t in tweets['tweets']:
             link = t.get('link', '')
             if link and link not in sent_links:
                 new.append({'link': link, 'text': t.get('text', '')})
-        
+
         if not new:
-            print(f"No new tweets")
+            print("No new tweets")
             return
-        
+
         print(f"Found {len(new)} new tweets")
-        
+
         for post in new:
             msg = f"New tweet from @{username}
 
@@ -53,23 +52,23 @@ async def check_account(bot, username):
             try:
                 await bot.send_message(chat_id=CHAT_ID, text=msg[:4096])
                 sent_links.add(post['link'])
-                print(f"Posted successfully")
+                print("Posted successfully")
             except Exception as e:
                 print(f"Error posting: {e}")
             await asyncio.sleep(2)
-        
+
         with open(sent_file, 'w') as f:
             for link in sent_links:
                 f.write(link + '
 ')
-    
+
     except Exception as e:
         print(f"Error: {e}")
 
 async def main():
     bot = telegram.Bot(token=BOT_TOKEN)
     print("Bot started!")
-    
+
     while True:
         print(f"
 {'='*40}
