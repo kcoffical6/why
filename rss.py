@@ -6,7 +6,7 @@ import time
 BOT_TOKEN = '7801655479:AAHXYk2f0Hn8jKlUSQnWbpeNNv8fwCLWTDI'
 CHAT_ID = '-1003270118980'
 TARGET_USERNAMES = ['tv9kannada', 'IamHCB', 'SpaceX']
-SLEEP_INTERVAL = 180
+SLEEP_INTERVAL = 900
 SLEEP_BETWEEN_ACCOUNTS = 30
 
 scraper = Nitter(log_level=1, skip_instance_check=False)
@@ -29,7 +29,7 @@ async def check_account(bot, username):
         tweets = scraper.get_tweets(username, mode='user', number=20)
         
         if not tweets or 'tweets' not in tweets:
-            print(f"-> No tweets found")
+            print(f"No tweets found")
             return
         
         new = []
@@ -39,13 +39,13 @@ async def check_account(bot, username):
                 new.append({'link': link, 'text': t.get('text', '')})
         
         if not new:
-            print(f"-> No new tweets")
+            print(f"No new tweets")
             return
         
-        print(f"-> Found {len(new)} new tweets")
+        print(f"Found {len(new)} new tweets")
         
         for post in new:
-            msg = f"🐦 @{username}
+            msg = f"New tweet from @{username}
 
 {post['text']}
 
@@ -53,9 +53,9 @@ async def check_account(bot, username):
             try:
                 await bot.send_message(chat_id=CHAT_ID, text=msg[:4096])
                 sent_links.add(post['link'])
-                print(f"✅ Posted")
+                print(f"Posted successfully")
             except Exception as e:
-                print(f"❌ Error: {e}")
+                print(f"Error posting: {e}")
             await asyncio.sleep(2)
         
         with open(sent_file, 'w') as f:
@@ -64,7 +64,7 @@ async def check_account(bot, username):
 ')
     
     except Exception as e:
-        print(f"-> Error: {e}")
+        print(f"Error: {e}")
 
 async def main():
     bot = telegram.Bot(token=BOT_TOKEN)
@@ -78,7 +78,7 @@ Cycle: {time.strftime('%H:%M:%S')}")
             await check_account(bot, user)
             await asyncio.sleep(SLEEP_BETWEEN_ACCOUNTS)
         print(f"
-💤 Sleeping {SLEEP_INTERVAL//60} minutes...")
+Sleeping {SLEEP_INTERVAL//60} minutes...")
         await asyncio.sleep(SLEEP_INTERVAL)
 
 if __name__ == '__main__':
