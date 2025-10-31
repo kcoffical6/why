@@ -15,7 +15,7 @@ BOT_TOKEN = '7801655479:AAHXYk2f0Hn8jKlUSQnWbpeNNv8fwCLWTDI'
 CHAT_ID = '-1003270118980'
 
 # 2. Nitter Config
-NITTER_INSTANCE_URL = 'https://nitter.privacydev.net/'
+NITTER_INSTANCE_URL = 'https://xcancel.com/'
 
 # 3. <<-- ADD ALL YOUR ACCOUNTS HERE -->>
 TARGET_USERNAMES = [
