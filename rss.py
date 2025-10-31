@@ -18,12 +18,12 @@ async def check_account(bot, username):
         with open(sent_file, 'r') as f:
             sent_links = set(line.strip() for line in f)
     except FileNotFoundError:
-        print(f"
---- First run: {username} ---")
+        print(f"""
+--- First run: {username} ---""")
         sent_links = set()
 
-    print(f"
---- Checking: {username} ---")
+    print(f"""
+--- Checking: {username} ---""")
 
     try:
         tweets = scraper.get_tweets(username, mode='user', number=20)
@@ -59,8 +59,7 @@ async def check_account(bot, username):
 
         with open(sent_file, 'w') as f:
             for link in sent_links:
-                f.write(link + '
-')
+                f.write(link + '\n')
 
     except Exception as e:
         print(f"Error: {e}")
@@ -70,14 +69,14 @@ async def main():
     print("Bot started!")
 
     while True:
-        print(f"
+        print(f"""
 {'='*40}
-Cycle: {time.strftime('%H:%M:%S')}")
+Cycle: {time.strftime('%H:%M:%S')}""")
         for user in TARGET_USERNAMES:
             await check_account(bot, user)
             await asyncio.sleep(SLEEP_BETWEEN_ACCOUNTS)
-        print(f"
-Sleeping {SLEEP_INTERVAL//60} minutes...")
+        print(f"""
+Sleeping {SLEEP_INTERVAL//60} minutes...""")
         await asyncio.sleep(SLEEP_INTERVAL)
 
 if __name__ == '__main__':
